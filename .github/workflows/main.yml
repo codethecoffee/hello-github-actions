@@ -1,2 +1,23 @@
 name: A workflow for my Hello World file
+# Workflow will execute any time code is pushed to my repository
+# using the "push" event
 on: push
+# jobs: The base component of a workflow run
+jobs:
+    # build: The identifier we're attaching to this job
+    build:
+        # name: Name of the job displayed on Github while running
+        name: Hello world action
+        runs-on: ubuntu-latest
+        # steps: The linear sequence of operations that make up a job
+        steps:
+            # uses: actions/checkout@vq uses a community action called checkout
+            # to allow the workflow to access the contents of the repository
+            - uses: actions/checkout@v1
+            # uses: ./action-a provides the relative path the action we've created
+            # in the action-a directory of the repository
+            - uses: ./action-a
+              # with: Used to specify the input variabels that will be available 
+              # to my action in the runtime environment.
+              with:
+                MY_NAME: "Mona"
